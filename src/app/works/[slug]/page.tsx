@@ -1,23 +1,23 @@
 import type { Metadata } from "next";
 
 type WorkDetailPageProps = {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 };
 
-export function generateMetadata(
+export async function generateMetadata(
   { params }: WorkDetailPageProps,
-): Metadata {
-  const { slug } = params;
+): Promise<Metadata> {
+  const { slug } = await params;
 
   return {
     title: `${slug} | Works | null-as-0x00`,
   };
 }
 
-export default function WorkDetailPage({ params }: WorkDetailPageProps) {
-  const { slug } = params;
+export default async function WorkDetailPage({ params }: WorkDetailPageProps) {
+  const { slug } = await params;
 
   return (
     <article className="space-y-6">
