@@ -1,23 +1,25 @@
 import type { Metadata } from "next";
 
 type BlogDetailPageProps = {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 };
 
-export function generateMetadata(
+export async function generateMetadata(
   { params }: BlogDetailPageProps,
-): Metadata {
-  const { slug } = params;
+): Promise<Metadata> {
+  const { slug } = await params;
 
   return {
     title: `${slug} | Blog | null-as-0x00`,
   };
 }
 
-export default function BlogDetailPage({ params }: BlogDetailPageProps) {
-  const { slug } = params;
+export default async function BlogDetailPage({
+  params,
+}: BlogDetailPageProps) {
+  const { slug } = await params;
 
   return (
     <article className="space-y-6">
