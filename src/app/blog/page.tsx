@@ -3,19 +3,17 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 import { getBlogList, type BlogPost } from "@/lib/microcms-client";
+import {
+  Card,
+  SectionHeader,
+  EmptyState,
+  ErrorMessage,
+} from "@/components/ui/index";
 
 export const metadata: Metadata = {
   title: "Blog | null-as-0x00",
   description: "Articles and engineering notes.",
 };
-
-function BlogEmptyState() {
-  return (
-    <p className="rounded-xl border border-dashed border-zinc-200 bg-zinc-50 p-6 text-sm text-zinc-600 dark:border-zinc-800 dark:bg-zinc-900/40 dark:text-zinc-400">
-      まだ公開中の Blog 記事はありません。記事を追加すると、ここに一覧表示されます。
-    </p>
-  );
-}
 
 type BlogListSectionProps = {
   posts: BlogPost[];
@@ -23,16 +21,15 @@ type BlogListSectionProps = {
 
 function BlogListSection({ posts }: BlogListSectionProps) {
   if (!posts.length) {
-    return <BlogEmptyState />;
+    return (
+      <EmptyState message="まだ公開中の Blog 記事はありません。記事を追加すると、ここに一覧表示されます。" />
+    );
   }
 
   return (
     <section aria-label="Blog posts list" className="space-y-4">
       {posts.map((post) => (
-        <article
-          key={post.id}
-          className="flex flex-col gap-4 rounded-xl border border-zinc-200 bg-white p-4 transition hover:border-zinc-300 dark:border-zinc-800 dark:bg-zinc-950 dark:hover:border-zinc-700 sm:flex-row"
-        >
+        <Card key={post.id} variant="hoverable" as="article">
           {post.thumbnail ? (
             <div className="relative h-24 w-full overflow-hidden rounded-lg bg-zinc-100 sm:h-24 sm:w-40">
               <Image
@@ -53,7 +50,7 @@ function BlogListSection({ posts }: BlogListSectionProps) {
             <h2 className="text-base font-semibold tracking-tight">
               <Link
                 href={`/blog/${post.slug}`}
-                className="hover:underline"
+                className="hover:underline focus-ring rounded"
               >
                 {post.title}
               </Link>
@@ -75,7 +72,7 @@ function BlogListSection({ posts }: BlogListSectionProps) {
               )}
             </div>
           </div>
-        </article>
+        </Card>
       ))}
     </section>
   );
@@ -96,14 +93,13 @@ export default async function BlogPage() {
   return (
     <>
       <header className="mb-8 space-y-2">
-        <h1 className="text-2xl font-semibold tracking-tight">Blog</h1>
-        <p className="text-sm text-zinc-600 dark:text-zinc-400">
-          技術記事や学習メモの一覧ページです。microCMS と連携した実データを表示します。
-        </p>
+        <SectionHeader
+          as="h1"
+          title="Blog"
+          description="技術記事や学習メモの一覧ページです。microCMS と連携した実データを表示します。"
+        />
         {isError && (
-          <p className="text-xs text-red-600 dark:text-red-400">
-            Blog 記事の取得中にエラーが発生しました。時間をおいて再度お試しください。
-          </p>
+          <ErrorMessage message="Blog 記事の取得中にエラーが発生しました。時間をおいて再度お試しください。" />
         )}
       </header>
 

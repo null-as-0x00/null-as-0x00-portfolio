@@ -5,6 +5,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 
 import type { BlogPost } from "@/lib/microcms-client";
+import { SectionHeader, EmptyState, ErrorMessage } from "@/components/ui/index";
 
 type LatestBlogSectionProps = {
   posts: BlogPost[];
@@ -74,7 +75,7 @@ function BlogCard({ post }: { post: BlogPost }) {
           <h3 className="text-base font-semibold tracking-tight">
             <Link
               href={`/blog/${post.slug}`}
-              className="hover:underline"
+              className="hover:underline focus-ring rounded"
             >
               {post.title}
             </Link>
@@ -110,31 +111,23 @@ export function LatestBlogSection({ posts, error }: LatestBlogSectionProps) {
       variants={containerVariants}
       className="space-y-6"
     >
-      <div className="flex items-center justify-between">
-        <div>
-          <h2 className="text-2xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-50">
-            Latest Blog
-          </h2>
-          <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
-            最新の技術記事・学習メモ
-          </p>
-        </div>
-        <Link
-          href="/blog"
-          className="text-sm font-medium text-zinc-700 hover:text-zinc-900 dark:text-zinc-300 dark:hover:text-zinc-100"
-        >
-          View all →
-        </Link>
-      </div>
+      <SectionHeader
+        title="Latest Blog"
+        description="最新の技術記事・学習メモ"
+        action={
+          <Link
+            href="/blog"
+            className="text-sm font-medium text-zinc-700 hover:text-zinc-900 dark:text-zinc-300 dark:hover:text-zinc-100 focus-ring rounded"
+          >
+            View all →
+          </Link>
+        }
+      />
 
       {error ? (
-        <p className="rounded-xl border border-dashed border-red-200 bg-red-50 p-4 text-sm text-red-600 dark:border-red-800 dark:bg-red-900/20 dark:text-red-400">
-          Blog 記事の取得中にエラーが発生しました。
-        </p>
+        <ErrorMessage message="Blog 記事の取得中にエラーが発生しました。" className="rounded-xl border border-dashed border-red-200 bg-red-50 p-4 text-sm dark:border-red-800 dark:bg-red-900/20" />
       ) : posts.length === 0 ? (
-        <p className="rounded-xl border border-dashed border-zinc-200 bg-zinc-50 p-4 text-sm text-zinc-600 dark:border-zinc-800 dark:bg-zinc-900/40 dark:text-zinc-400">
-          まだ公開中の Blog 記事はありません。
-        </p>
+        <EmptyState message="まだ公開中の Blog 記事はありません。" />
       ) : (
         <div className="space-y-4">
           {posts.map((post) => (
