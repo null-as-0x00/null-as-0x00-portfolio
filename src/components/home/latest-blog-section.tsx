@@ -107,7 +107,7 @@ export function LatestBlogSection({ posts, error }: LatestBlogSectionProps) {
     <motion.section
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, margin: "-100px" }}
+      viewport={{ once: true, margin: "-20%" }}
       variants={containerVariants}
       className="space-y-6"
     >
@@ -125,7 +125,10 @@ export function LatestBlogSection({ posts, error }: LatestBlogSectionProps) {
       />
 
       {error ? (
-        <ErrorMessage message="Blog 記事の取得中にエラーが発生しました。" className="rounded-xl border border-dashed border-red-200 bg-red-50 p-4 text-sm dark:border-red-800 dark:bg-red-900/20" />
+        <ErrorMessage
+          message="Blog 記事の取得中にエラーが発生しました。"
+          className="rounded-xl border border-dashed border-red-200 bg-red-50 p-4 text-sm dark:border-red-800 dark:bg-red-900/20"
+        />
       ) : posts.length === 0 ? (
         <EmptyState message="まだ公開中の Blog 記事はありません。" />
       ) : (

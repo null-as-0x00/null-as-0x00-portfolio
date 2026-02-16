@@ -5,7 +5,12 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 
 import type { Work } from "@/lib/microcms-client";
-import { Tag, SectionHeader, EmptyState, ErrorMessage } from "@/components/ui/index";
+import {
+  Tag,
+  SectionHeader,
+  EmptyState,
+  ErrorMessage,
+} from "@/components/ui/index";
 
 type FeaturedWorksSectionProps = {
   works: Work[];
@@ -100,12 +105,15 @@ function WorkCard({ work }: { work: Work }) {
   );
 }
 
-export function FeaturedWorksSection({ works, error }: FeaturedWorksSectionProps) {
+export function FeaturedWorksSection({
+  works,
+  error,
+}: FeaturedWorksSectionProps) {
   return (
     <motion.section
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, margin: "-100px" }}
+      viewport={{ once: true, margin: "-20%" }}
       variants={containerVariants}
       className="space-y-6"
     >
@@ -123,7 +131,10 @@ export function FeaturedWorksSection({ works, error }: FeaturedWorksSectionProps
       />
 
       {error ? (
-        <ErrorMessage message="Works の取得中にエラーが発生しました。" className="rounded-xl border border-dashed border-red-200 bg-red-50 p-4 text-sm dark:border-red-800 dark:bg-red-900/20" />
+        <ErrorMessage
+          message="Works の取得中にエラーが発生しました。"
+          className="rounded-xl border border-dashed border-red-200 bg-red-50 p-4 text-sm dark:border-red-800 dark:bg-red-900/20"
+        />
       ) : works.length === 0 ? (
         <EmptyState message="まだ公開中の Works はありません。" />
       ) : (
