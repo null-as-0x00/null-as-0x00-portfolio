@@ -23,12 +23,11 @@ type ButtonAsLink = ButtonBaseProps & {
 type ButtonProps = ButtonAsButton | ButtonAsLink;
 
 const variantClasses = {
-  primary:
-    "bg-zinc-900 text-white hover:bg-zinc-800 dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-zinc-200",
+  primary: "bg-brand-primary text-background hover:opacity-90",
   secondary:
     "bg-zinc-100 text-zinc-900 hover:bg-zinc-200 dark:bg-zinc-800 dark:text-zinc-100 dark:hover:bg-zinc-700",
   outline:
-    "border border-zinc-200 bg-transparent hover:border-zinc-300 hover:bg-zinc-50 dark:border-zinc-700 dark:hover:border-zinc-600 dark:hover:bg-zinc-900",
+    "border border-border bg-transparent hover:border-border-hover hover:bg-zinc-50 dark:hover:bg-zinc-900",
 };
 
 const sizeClasses = {
@@ -47,7 +46,8 @@ export function PrimaryButton({
   className = "",
   ...props
 }: ButtonProps) {
-  const combinedClassName = `${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]} ${className}`.trim();
+  const combinedClassName =
+    `${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]} ${className}`.trim();
 
   if ("href" in props && props.href) {
     return (

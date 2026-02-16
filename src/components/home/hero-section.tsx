@@ -24,9 +24,16 @@ export function HeroSection() {
           Web Developer & Engineer
         </p>
       </div>
-      <p className="max-w-2xl text-base leading-7 text-zinc-600 dark:text-zinc-400">
-        ポートフォリオサイトへようこそ。制作物や技術記事を紹介しています。
-      </p>
+      <div className="max-w-2xl space-y-4 text-base leading-7 text-zinc-600 dark:text-zinc-400">
+        <p>
+          こんにちは、null-as-0x00 です。Web
+          フロントエンドを中心に、モダンな技術スタックを用いた開発を行っています。
+        </p>
+        <p>
+          このポートフォリオでは、これまで制作したプロジェクトや、日々の学習で得た技術的な知見をブログとして発信しています。
+          「シンプルで使いやすく、かつ堅牢な実装」をモットーに、ユーザーと開発者の両方に価値を届けることを目指しています。
+        </p>
+      </div>
     </motion.section>
   );
 }
