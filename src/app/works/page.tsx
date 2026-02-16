@@ -12,8 +12,8 @@ import {
 } from "@/components/ui/index";
 
 export const metadata: Metadata = {
-  title: "Works | null-as-0x00",
-  description: "Selected works and projects.",
+  title: "Works",
+  description: "null-as-0x00がこれまでに制作したプロジェクトや作品の一覧です。",
 };
 
 type WorksListSectionProps = {
@@ -85,7 +85,10 @@ export default async function WorksPage() {
     const { contents } = await getWorksList();
     works = contents;
   } catch (error) {
-    console.error("[WorksPage] Failed to fetch works list from microCMS:", error);
+    console.error(
+      "[WorksPage] Failed to fetch works list from microCMS:",
+      error,
+    );
     isError = true;
   }
 

@@ -25,20 +25,32 @@ export async function generateStaticParams() {
   }));
 }
 
-export async function generateMetadata(
-  { params }: BlogDetailPageParams,
-): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: BlogDetailPageParams): Promise<Metadata> {
   const post = await getBlogBySlug(params.slug);
 
   if (!post) {
     return {
-      title: "Blog post not found | null-as-0x00",
+      title: "Blog post not found",
     };
   }
 
   return {
-    title: `${post.title} | Blog | null-as-0x00`,
-    description: post.excerpt || "Blog post.",
+    title: post.title,
+    description: post.excerpt || `${post.title}のブログ記事ページです。`,
+    openGraph: {
+      title: post.title,
+      description: post.excerpt,
+      images: post.thumbnail ? [{ url: post.thumbnail.url }] : [],
+      type: "article",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description: post.excerpt,
+      images: post.thumbnail ? [post.thumbnail.url] : [],
+    },
   };
 }
 
@@ -53,9 +65,7 @@ function BlogHeader({ post }: BlogHeaderProps) {
         <p className="text-xs uppercase tracking-[0.16em] text-zinc-500 dark:text-zinc-400">
           Blog Post
         </p>
-        <h1 className="text-2xl font-semibold tracking-tight">
-          {post.title}
-        </h1>
+        <h1 className="text-2xl font-semibold tracking-tight">{post.title}</h1>
         {post.excerpt && (
           <p className="text-sm text-zinc-600 dark:text-zinc-400">
             {post.excerpt}
@@ -127,9 +137,7 @@ function BlogBody({ body }: BlogBodyProps) {
   );
 }
 
-export default async function BlogDetailPage({
-  params,
-}: BlogDetailPageParams) {
+export default async function BlogDetailPage({ params }: BlogDetailPageParams) {
   const post = await getBlogBySlug(params.slug);
 
   if (!post) {
@@ -148,4 +156,3 @@ export default async function BlogDetailPage({
     </article>
   );
 }
-

@@ -11,8 +11,8 @@ import {
 } from "@/components/ui/index";
 
 export const metadata: Metadata = {
-  title: "Blog | null-as-0x00",
-  description: "Articles and engineering notes.",
+  title: "Blog",
+  description: "技術記事や学習メモ、日々の開発で得た知見を発信しています。",
 };
 
 type BlogListSectionProps = {
@@ -86,7 +86,10 @@ export default async function BlogPage() {
     const { contents } = await getBlogList();
     posts = contents;
   } catch (error) {
-    console.error("[BlogPage] Failed to fetch blog posts from microCMS:", error);
+    console.error(
+      "[BlogPage] Failed to fetch blog posts from microCMS:",
+      error,
+    );
     isError = true;
   }
 

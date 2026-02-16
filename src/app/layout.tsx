@@ -15,8 +15,28 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "null-as-0x00 portfolio",
-  description: "Portfolio site built with Next.js App Router",
+  title: {
+    default: "null-as-0x00 portfolio",
+    template: "%s | null-as-0x00",
+  },
+  description:
+    "Webフロントエンドエンジニア null-as-0x00 のポートフォリオサイトです。制作物や技術記事を公開しています。",
+  openGraph: {
+    title: "null-as-0x00 portfolio",
+    description:
+      "Webフロントエンドエンジニア null-as-0x00 のポートフォリオサイトです。",
+    url: "https://null-as-0x00.vercel.app",
+    siteName: "null-as-0x00 portfolio",
+    locale: "ja_JP",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "null-as-0x00 portfolio",
+    description:
+      "Webフロントエンドエンジニア null-as-0x00 のポートフォリオサイトです。",
+    creator: "@null_as_0x00",
+  },
 };
 
 export default function RootLayout({

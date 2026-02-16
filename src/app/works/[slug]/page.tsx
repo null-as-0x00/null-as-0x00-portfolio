@@ -2,11 +2,7 @@ import Image from "next/image";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-import {
-  getWorkBySlug,
-  getWorksList,
-  type Work,
-} from "@/lib/microcms-client";
+import { getWorkBySlug, getWorksList, type Work } from "@/lib/microcms-client";
 
 type WorkDetailPageParams = {
   params: {
@@ -25,20 +21,32 @@ export async function generateStaticParams() {
   }));
 }
 
-export async function generateMetadata(
-  { params }: WorkDetailPageParams,
-): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: WorkDetailPageParams): Promise<Metadata> {
   const work = await getWorkBySlug(params.slug);
 
   if (!work) {
     return {
-      title: "Work not found | null-as-0x00",
+      title: "Work not found",
     };
   }
 
   return {
-    title: `${work.title} | Works | null-as-0x00`,
-    description: work.summary || "Work detail page.",
+    title: work.title,
+    description: work.summary || `${work.title}のプロジェクト詳細ページです。`,
+    openGraph: {
+      title: work.title,
+      description: work.summary,
+      images: work.thumbnail ? [{ url: work.thumbnail.url }] : [],
+      type: "article",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: work.title,
+      description: work.summary,
+      images: work.thumbnail ? [work.thumbnail.url] : [],
+    },
   };
 }
 
@@ -53,9 +61,7 @@ function WorkHeader({ work }: WorkHeaderProps) {
         <p className="text-xs uppercase tracking-[0.16em] text-zinc-500 dark:text-zinc-400">
           Work Detail
         </p>
-        <h1 className="text-2xl font-semibold tracking-tight">
-          {work.title}
-        </h1>
+        <h1 className="text-2xl font-semibold tracking-tight">{work.title}</h1>
         {work.summary && (
           <p className="text-sm text-zinc-600 dark:text-zinc-400">
             {work.summary}
@@ -196,9 +202,7 @@ function WorkThumbnail({ work }: WorkThumbnailProps) {
   );
 }
 
-export default async function WorkDetailPage(
-  { params }: WorkDetailPageParams,
-) {
+export default async function WorkDetailPage({ params }: WorkDetailPageParams) {
   const work = await getWorkBySlug(params.slug);
 
   if (!work) {
@@ -224,4 +228,3 @@ export default async function WorkDetailPage(
     </article>
   );
 }
-
