@@ -5,9 +5,9 @@ import { notFound } from "next/navigation";
 import { getWorkBySlug, getWorksList, type Work } from "@/lib/microcms-client";
 
 type WorkDetailPageParams = {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 };
 
 export async function generateStaticParams() {
@@ -24,7 +24,8 @@ export async function generateStaticParams() {
 export async function generateMetadata({
   params,
 }: WorkDetailPageParams): Promise<Metadata> {
-  const work = await getWorkBySlug(params.slug);
+  const { slug } = await params;
+  const work = await getWorkBySlug(slug);
 
   if (!work) {
     return {
@@ -203,7 +204,8 @@ function WorkThumbnail({ work }: WorkThumbnailProps) {
 }
 
 export default async function WorkDetailPage({ params }: WorkDetailPageParams) {
-  const work = await getWorkBySlug(params.slug);
+  const { slug } = await params;
+  const work = await getWorkBySlug(slug);
 
   if (!work) {
     notFound();
