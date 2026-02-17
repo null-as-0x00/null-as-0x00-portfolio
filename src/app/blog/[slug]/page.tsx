@@ -9,9 +9,9 @@ import {
 } from "@/lib/microcms-client";
 
 type BlogDetailPageParams = {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 };
 
 export async function generateStaticParams() {
@@ -28,7 +28,8 @@ export async function generateStaticParams() {
 export async function generateMetadata({
   params,
 }: BlogDetailPageParams): Promise<Metadata> {
-  const post = await getBlogBySlug(params.slug);
+  const { slug } = await params;
+  const post = await getBlogBySlug(slug);
 
   if (!post) {
     return {
@@ -138,7 +139,8 @@ function BlogBody({ body }: BlogBodyProps) {
 }
 
 export default async function BlogDetailPage({ params }: BlogDetailPageParams) {
-  const post = await getBlogBySlug(params.slug);
+  const { slug } = await params;
+  const post = await getBlogBySlug(slug);
 
   if (!post) {
     notFound();
