@@ -1,21 +1,6 @@
-"use client";
-
-import { motion } from "framer-motion";
-
-const fadeInUp = {
-  initial: { opacity: 0, y: 20 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.5, ease: "easeOut" },
-};
-
 export function HeroSection() {
   return (
-    <motion.section
-      initial={fadeInUp.initial}
-      animate={fadeInUp.animate}
-      transition={fadeInUp.transition}
-      className="space-y-4"
-    >
+    <section className="animate-in fade-in slide-in-from-bottom-5 duration-700 ease-out fill-mode-both space-y-4">
       <div className="space-y-2">
         <h1 className="text-4xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-50 sm:text-5xl">
           null-as-0x00
@@ -34,6 +19,6 @@ export function HeroSection() {
           「シンプルで使いやすく、かつ堅牢な実装」をモットーに、ユーザーと開発者の両方に価値を届けることを目指しています。
         </p>
       </div>
-    </motion.section>
+    </section>
   );
 }
