@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 
 import type { Work } from "@/lib/microcms-client";
 import {
@@ -49,14 +49,10 @@ const cardHoverVariants = {
   },
 };
 
-function WorkCard({ work }: { work: Work }) {
+function WorkCard({ work, index }: { work: Work; index: number }) {
   return (
-    <motion.article
-      variants={itemVariants}
-      whileHover="hover"
-      className="group"
-    >
-      <motion.div
+    <m.article variants={itemVariants} whileHover="hover" className="group">
+      <m.div
         variants={cardHoverVariants}
         className="flex flex-col gap-4 rounded-xl border border-zinc-200 bg-white p-4 transition-colors hover:border-zinc-300 dark:border-zinc-800 dark:bg-zinc-950 dark:hover:border-zinc-700 sm:flex-row"
       >
@@ -67,6 +63,7 @@ function WorkCard({ work }: { work: Work }) {
               alt={work.title}
               fill
               sizes="(min-width: 640px) 160px, 100vw"
+              priority={index < 2}
               className="object-cover transition-transform group-hover:scale-105"
             />
           </div>
@@ -100,8 +97,8 @@ function WorkCard({ work }: { work: Work }) {
             </ul>
           )}
         </div>
-      </motion.div>
-    </motion.article>
+      </m.div>
+    </m.article>
   );
 }
 
@@ -110,7 +107,7 @@ export function FeaturedWorksSection({
   error,
 }: FeaturedWorksSectionProps) {
   return (
-    <motion.section
+    <m.section
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "-20%" }}
@@ -139,11 +136,11 @@ export function FeaturedWorksSection({
         <EmptyState message="まだ公開中の Works はありません。" />
       ) : (
         <div className="space-y-4">
-          {works.map((work) => (
-            <WorkCard key={work.id} work={work} />
+          {works.map((work, index) => (
+            <WorkCard key={work.id} work={work} index={index} />
           ))}
         </div>
       )}
-    </motion.section>
+    </m.section>
   );
 }

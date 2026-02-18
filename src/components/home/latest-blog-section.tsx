@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 
 import type { BlogPost } from "@/lib/microcms-client";
 import { SectionHeader, EmptyState, ErrorMessage } from "@/components/ui/index";
@@ -46,12 +46,8 @@ const cardHoverVariants = {
 
 function BlogCard({ post }: { post: BlogPost }) {
   return (
-    <motion.article
-      variants={itemVariants}
-      whileHover="hover"
-      className="group"
-    >
-      <motion.div
+    <m.article variants={itemVariants} whileHover="hover" className="group">
+      <m.div
         variants={cardHoverVariants}
         className="flex flex-col gap-4 rounded-xl border border-zinc-200 bg-white p-4 transition-colors hover:border-zinc-300 dark:border-zinc-800 dark:bg-zinc-950 dark:hover:border-zinc-700 sm:flex-row"
       >
@@ -97,14 +93,14 @@ function BlogCard({ post }: { post: BlogPost }) {
             )}
           </div>
         </div>
-      </motion.div>
-    </motion.article>
+      </m.div>
+    </m.article>
   );
 }
 
 export function LatestBlogSection({ posts, error }: LatestBlogSectionProps) {
   return (
-    <motion.section
+    <m.section
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "-20%" }}
@@ -138,6 +134,6 @@ export function LatestBlogSection({ posts, error }: LatestBlogSectionProps) {
           ))}
         </div>
       )}
-    </motion.section>
+    </m.section>
   );
 }
