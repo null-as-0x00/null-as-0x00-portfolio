@@ -54,6 +54,8 @@ function BlogCard({ post }: { post: BlogPost }) {
         {post.thumbnail ? (
           <div className="relative h-24 w-full overflow-hidden rounded-lg bg-zinc-100 sm:w-40">
             <Image
+              width={320}
+              height={180}
               src={post.thumbnail.url}
               alt={post.title}
               fill

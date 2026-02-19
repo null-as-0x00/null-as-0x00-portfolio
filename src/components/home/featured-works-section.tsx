@@ -59,6 +59,8 @@ function WorkCard({ work, index }: { work: Work; index: number }) {
         {work.thumbnail ? (
           <div className="relative h-32 w-full overflow-hidden rounded-lg bg-zinc-100 sm:h-24 sm:w-40">
             <Image
+              width={320}
+              height={180}
               src={work.thumbnail.url}
               alt={work.title}
               fill

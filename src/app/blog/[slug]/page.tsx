@@ -113,6 +113,8 @@ function BlogThumbnail({ post }: BlogThumbnailProps) {
   return (
     <div className="relative h-56 w-full overflow-hidden rounded-xl bg-zinc-100 sm:h-64">
       <Image
+        width={768}
+        height={432}
         src={post.thumbnail.url}
         alt={post.title}
         fill
