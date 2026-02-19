@@ -193,6 +193,8 @@ function WorkThumbnail({ work }: WorkThumbnailProps) {
   return (
     <div className="relative h-56 w-full overflow-hidden rounded-xl bg-zinc-100 sm:h-64">
       <Image
+        width={768}
+        height={432}
         src={work.thumbnail.url}
         alt={work.title}
         fill
