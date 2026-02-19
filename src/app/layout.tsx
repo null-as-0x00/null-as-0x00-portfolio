@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import type { DocumentContext } from "next/document";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
@@ -49,6 +50,22 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja">
+      <head>
+        <link
+          rel="preload"
+          href="/fonts/geist.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preload"
+          href="/fonts/geist-mono.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-zinc-50 text-zinc-900 dark:bg-black dark:text-zinc-50`}
       >
