@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { m } from "framer-motion";
+import { m, type Variants } from "framer-motion";
 
 import type { BlogPost } from "@/lib/microcms-client";
 import { SectionHeader, EmptyState, ErrorMessage } from "@/components/ui/index";
@@ -12,7 +12,7 @@ type LatestBlogSectionProps = {
   error: boolean;
 };
 
-const containerVariants = {
+const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -22,24 +22,24 @@ const containerVariants = {
   },
 };
 
-const itemVariants = {
+const itemVariants: Variants = {
   hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,
     y: 0,
     transition: {
       duration: 0.5,
-      ease: "easeOut",
+      ease: [0.42, 0, 0.58, 1],
     },
   },
 };
 
-const cardHoverVariants = {
+const cardHoverVariants: Variants = {
   hover: {
     scale: 1.02,
     transition: {
       duration: 0.2,
-      ease: "easeOut",
+      ease: [0.42, 0, 0.58, 1],
     },
   },
 };
@@ -130,10 +130,72 @@ export function LatestBlogSection({ posts, error }: LatestBlogSectionProps) {
       ) : posts.length === 0 ? (
         <EmptyState message="まだ公開中の Blog 記事はありません。" />
       ) : (
-        <div className="space-y-4">
-          {posts.map((post) => (
-            <BlogCard key={post.id} post={post} />
-          ))}
+        <div className="relative grid grid-cols-1 gap-6 md:grid-cols-3">
+          {/* Large card - spans 2 columns */}
+          {posts[0] && (
+            <m.article
+              className="md:col-span-2"
+              variants={itemVariants}
+              whileHover={{ scale: 1.02, zIndex: 10 }}
+              transition={{ duration: 0.3, ease: [0.42, 0, 0.58, 1] }}
+            >
+              <BlogCard post={posts[0]} />
+            </m.article>
+          )}
+
+          {/* Small cards - right column */}
+          <div className="space-y-6 md:col-span-1">
+            {posts[1] && (
+              <m.article
+                className="relative z-10"
+                variants={itemVariants}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{
+                  delay: 0.1,
+                  duration: 0.5,
+                  ease: [0.42, 0, 0.58, 1],
+                }}
+                whileHover={{ scale: 1.05, zIndex: 20 }}
+              >
+                <BlogCard post={posts[1]} />
+              </m.article>
+            )}
+            {posts[2] && (
+              <m.article
+                className="relative z-10"
+                variants={itemVariants}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{
+                  delay: 0.2,
+                  duration: 0.5,
+                  ease: [0.42, 0, 0.58, 1],
+                }}
+                whileHover={{ scale: 1.05, zIndex: 20 }}
+              >
+                <BlogCard post={posts[2]} />
+              </m.article>
+            )}
+          </div>
+
+          {/* Standard card - bottom row */}
+          {posts[3] && (
+            <m.article
+              className="relative z-10 md:col-span-3"
+              variants={itemVariants}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{
+                delay: 0.3,
+                duration: 0.5,
+                ease: [0.42, 0, 0.58, 1],
+              }}
+              whileHover={{ scale: 1.02, zIndex: 10 }}
+            >
+              <BlogCard post={posts[3]} />
+            </m.article>
+          )}
         </div>
       )}
     </m.section>
