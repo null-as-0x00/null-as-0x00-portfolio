@@ -49,7 +49,7 @@ function BlogCard({ post }: { post: BlogPost }) {
     <m.article variants={itemVariants} whileHover="hover" className="group">
       <m.div
         variants={cardHoverVariants}
-        className="flex flex-col gap-4 rounded-xl border border-color-border bg-background p-4 transition-colors hover:border-color-border-hover sm:flex-row"
+        className="flex flex-col gap-4 rounded-xl border border-border border-color-border bg-background p-4 transition-colors hover:border-color-border-hover sm:flex-row"
       >
         {post.thumbnail ? (
           <div className="relative h-24 w-full overflow-hidden rounded-lg bg-color-border/50 sm:w-40">

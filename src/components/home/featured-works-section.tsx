@@ -54,9 +54,7 @@ function WorkCard({ work, index }: { work: Work; index: number }) {
     <m.article variants={itemVariants} whileHover="hover" className="group">
       <m.div
         variants={cardHoverVariants}
-        // bg-white/dark:bg-zinc-950 を bg-background (またはカード用変数) へ
-        // border-zinc-200 を border-color-border へ
-        className="flex flex-col gap-4 rounded-xl border border-color-border bg-background p-4 transition-colors hover:border-color-border-hover sm:flex-row"
+        className="flex flex-col gap-4 rounded-xl border border-border border-color-border bg-background p-4 transition-colors hover:border-color-border-hover sm:flex-row"
       >
         {work.thumbnail ? (
           <div className="relative h-32 w-full overflow-hidden rounded-lg bg-color-border/50 sm:h-24 sm:w-40">
