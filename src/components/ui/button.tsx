@@ -37,7 +37,7 @@ const sizeClasses = {
 };
 
 const baseClasses =
-  "inline-flex items-center justify-center rounded-full font-medium transition focus:outline-none focus:ring-2 focus:ring-zinc-900 focus:ring-offset-2 dark:focus:ring-zinc-100";
+  "inline-flex items-center justify-center rounded-full font-medium transition focus-ring";
 
 export function PrimaryButton({
   children,

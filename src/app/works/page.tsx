@@ -32,7 +32,8 @@ function WorksListSection({ works }: WorksListSectionProps) {
       {works.map((work) => (
         <Card key={work.id} variant="hoverable" as="article">
           {work.thumbnail ? (
-            <div className="relative h-32 w-full overflow-hidden rounded-lg bg-zinc-100 sm:h-24 sm:w-40">
+            // bg-zinc-100 を color-border の透過色などに変更
+            <div className="relative h-32 w-full overflow-hidden rounded-lg bg-color-border/50 sm:h-24 sm:w-40">
               <Image
                 src={work.thumbnail.url}
                 alt={work.title}
@@ -42,13 +43,15 @@ function WorksListSection({ works }: WorksListSectionProps) {
               />
             </div>
           ) : (
-            <div className="flex h-32 w-full items-center justify-center rounded-lg bg-gradient-to-br from-zinc-100 to-zinc-200 text-xs text-zinc-500 dark:from-zinc-900 dark:to-zinc-800 dark:text-zinc-400 sm:h-24 sm:w-40">
+            // グラデーションの zinc 指定を CSS変数(color-border)ベースに変更
+            <div className="flex h-32 w-full items-center justify-center rounded-lg bg-gradient-to-br from-color-border/30 to-color-border/60 text-xs text-color-muted sm:h-24 sm:w-40">
               No thumbnail
             </div>
           )}
 
           <div className="flex-1">
-            <h2 className="text-base font-semibold tracking-tight">
+            {/* テキストカラーを brand-primary に設定 */}
+            <h2 className="text-base font-semibold tracking-tight text-brand-primary">
               <Link
                 href={`/works/${work.slug}`}
                 className="hover:underline focus-ring rounded"
@@ -57,9 +60,8 @@ function WorksListSection({ works }: WorksListSectionProps) {
               </Link>
             </h2>
             {work.summary && (
-              <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
-                {work.summary}
-              </p>
+              // zinc-600 dark:zinc-400 を color-muted に統一
+              <p className="mt-1 text-sm text-color-muted">{work.summary}</p>
             )}
             {work.techStack && work.techStack.length > 0 && (
               <ul className="mt-2 flex flex-wrap gap-1.5" role="list">

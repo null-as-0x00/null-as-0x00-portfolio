@@ -54,10 +54,10 @@ function WorkCard({ work, index }: { work: Work; index: number }) {
     <m.article variants={itemVariants} whileHover="hover" className="group">
       <m.div
         variants={cardHoverVariants}
-        className="flex flex-col gap-4 rounded-xl border border-zinc-200 bg-white p-4 transition-colors hover:border-zinc-300 dark:border-zinc-800 dark:bg-zinc-950 dark:hover:border-zinc-700 sm:flex-row"
+        className="flex flex-col gap-4 rounded-xl border border-border border-color-border bg-background p-4 transition-colors hover:border-color-border-hover sm:flex-row"
       >
         {work.thumbnail ? (
-          <div className="relative h-32 w-full overflow-hidden rounded-lg bg-zinc-100 sm:h-24 sm:w-40">
+          <div className="relative h-32 w-full overflow-hidden rounded-lg bg-color-border/50 sm:h-24 sm:w-40">
             <Image
               width={320}
               height={180}
@@ -70,13 +70,13 @@ function WorkCard({ work, index }: { work: Work; index: number }) {
             />
           </div>
         ) : (
-          <div className="flex h-32 w-full items-center justify-center rounded-lg bg-gradient-to-br from-zinc-100 to-zinc-200 text-xs text-zinc-500 dark:from-zinc-900 dark:to-zinc-800 dark:text-zinc-400 sm:h-24 sm:w-40">
+          <div className="flex h-32 w-full items-center justify-center rounded-lg bg-gradient-to-br from-color-border/30 to-color-border/60 text-xs text-color-muted sm:h-24 sm:w-40">
             No thumbnail
           </div>
         )}
 
         <div className="flex-1">
-          <h3 className="text-base font-semibold tracking-tight">
+          <h3 className="text-base font-semibold tracking-tight text-brand-primary">
             <Link
               href={`/works/${work.slug}`}
               className="hover:underline focus-ring rounded"
@@ -85,9 +85,7 @@ function WorkCard({ work, index }: { work: Work; index: number }) {
             </Link>
           </h3>
           {work.summary && (
-            <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
-              {work.summary}
-            </p>
+            <p className="mt-1 text-sm text-color-muted">{work.summary}</p>
           )}
           {work.techStack && work.techStack.length > 0 && (
             <ul className="mt-2 flex flex-wrap gap-1.5" role="list">
@@ -122,7 +120,7 @@ export function FeaturedWorksSection({
         action={
           <Link
             href="/works"
-            className="text-sm font-medium text-zinc-700 hover:text-zinc-900 dark:text-zinc-300 dark:hover:text-zinc-100 focus-ring rounded"
+            className="text-sm font-medium text-color-muted hover:text-brand-primary focus-ring rounded"
           >
             View all →
           </Link>

@@ -4,6 +4,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { FramerMotionConfig } from "@/components/layout/framer-motion-config";
+import { Providers } from "./providers";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -49,7 +50,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ja">
+    <html lang="ja" suppressHydrationWarning>
       <head>
         <link
           rel="preload"
@@ -67,19 +68,21 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-zinc-50 text-zinc-900 dark:bg-black dark:text-zinc-50`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <FramerMotionConfig>
-          <div className="flex min-h-screen flex-col">
-            <Header />
-            <main className="flex-1">
-              <div className="mx-auto max-w-5xl px-4 py-10 sm:px-6 lg:px-8">
-                {children}
-              </div>
-            </main>
-            <Footer />
-          </div>
-        </FramerMotionConfig>
+        <Providers>
+          <FramerMotionConfig>
+            <div className="flex min-h-screen flex-col">
+              <Header />
+              <main className="flex-1">
+                <div className="mx-auto max-w-5xl px-4 py-10 sm:px-6 lg:px-8">
+                  {children}
+                </div>
+              </main>
+              <Footer />
+            </div>
+          </FramerMotionConfig>
+        </Providers>
       </body>
     </html>
   );
