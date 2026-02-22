@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { cn } from "@/lib/utils";
 
 type CardProps = {
   children: ReactNode;
@@ -6,11 +7,6 @@ type CardProps = {
   className?: string;
   as?: "div" | "article";
 };
-
-const baseClasses =
-  "flex flex-col gap-4 rounded-xl border border-zinc-200 bg-white p-4 dark:border-zinc-800 dark:bg-zinc-950 sm:flex-row";
-const hoverableClasses =
-  "transition hover:border-zinc-300 dark:hover:border-zinc-700";
 
 export function Card({
   children,
@@ -20,7 +16,13 @@ export function Card({
 }: CardProps) {
   return (
     <Component
-      className={`${baseClasses} ${variant === "hoverable" ? hoverableClasses : ""} ${className}`.trim()}
+      className={cn(
+        "flex flex-col gap-4 rounded-xl border border-border bg-card p-4 shadow sm:flex-row",
+        "transition-colors",
+        variant === "hoverable" &&
+          "hover:border-border-hover hover:bg-card-hover",
+        className,
+      )}
     >
       {children}
     </Component>

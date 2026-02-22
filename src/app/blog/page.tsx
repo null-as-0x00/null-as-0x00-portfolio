@@ -31,7 +31,8 @@ function BlogListSection({ posts }: BlogListSectionProps) {
       {posts.map((post) => (
         <Card key={post.id} variant="hoverable" as="article">
           {post.thumbnail ? (
-            <div className="relative h-24 w-full overflow-hidden rounded-lg bg-zinc-100 sm:h-24 sm:w-40">
+            /* bg-zinc-100 を透過した border 色に変更 */
+            <div className="relative h-24 w-full overflow-hidden rounded-lg bg-color-border/50 sm:h-24 sm:w-40">
               <Image
                 src={post.thumbnail.url}
                 alt={post.title}
@@ -41,13 +42,15 @@ function BlogListSection({ posts }: BlogListSectionProps) {
               />
             </div>
           ) : (
-            <div className="flex h-24 w-full items-center justify-center rounded-lg bg-gradient-to-br from-zinc-100 to-zinc-200 text-xs text-zinc-500 dark:from-zinc-900 dark:to-zinc-800 dark:text-zinc-400 sm:w-40">
+            /* グラデーションの zinc 指定を CSS変数(color-border)ベースに変更 */
+            <div className="flex h-24 w-full items-center justify-center rounded-lg bg-gradient-to-br from-color-border/30 to-color-border/60 text-xs text-color-muted sm:w-40">
               No thumbnail
             </div>
           )}
 
           <div className="flex-1">
-            <h2 className="text-base font-semibold tracking-tight">
+            {/* テキストカラーを brand-primary に設定 */}
+            <h2 className="text-base font-semibold tracking-tight text-brand-primary">
               <Link
                 href={`/blog/${post.slug}`}
                 className="hover:underline focus-ring rounded"
@@ -56,11 +59,10 @@ function BlogListSection({ posts }: BlogListSectionProps) {
               </Link>
             </h2>
             {post.excerpt && (
-              <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
-                {post.excerpt}
-              </p>
+              /* text-zinc-600/400 を color-muted に統一 */
+              <p className="mt-1 text-sm text-color-muted">{post.excerpt}</p>
             )}
-            <div className="mt-2 flex flex-wrap items-center gap-3 text-xs text-zinc-500 dark:text-zinc-400">
+            <div className="mt-2 flex flex-wrap items-center gap-3 text-xs text-color-muted">
               {post.category && <span>{post.category}</span>}
               {post.publishedAt && (
                 <span>

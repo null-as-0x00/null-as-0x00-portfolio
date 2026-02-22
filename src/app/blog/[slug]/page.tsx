@@ -63,20 +63,22 @@ function BlogHeader({ post }: BlogHeaderProps) {
   return (
     <header className="space-y-4">
       <div className="space-y-2">
-        <p className="text-xs uppercase tracking-[0.16em] text-zinc-500 dark:text-zinc-400">
+        {/* text-color-muted を適用 */}
+        <p className="text-xs uppercase tracking-[0.16em] text-color-muted">
           Blog Post
         </p>
-        <h1 className="text-2xl font-semibold tracking-tight">{post.title}</h1>
+        <h1 className="text-2xl font-semibold tracking-tight text-brand-primary">
+          {post.title}
+        </h1>
         {post.excerpt && (
-          <p className="text-sm text-zinc-600 dark:text-zinc-400">
-            {post.excerpt}
-          </p>
+          <p className="text-sm text-color-muted">{post.excerpt}</p>
         )}
       </div>
 
-      <div className="flex flex-wrap items-center gap-3 text-xs text-zinc-500 dark:text-zinc-400">
+      <div className="flex flex-wrap items-center gap-3 text-xs text-color-muted">
         {post.category && (
-          <span className="rounded-full bg-zinc-100 px-2 py-0.5 font-medium text-zinc-700 dark:bg-zinc-900 dark:text-zinc-200">
+          /* 背景をボーダー色の透過に、テキストをブランドカラーに変更 */
+          <span className="rounded-full bg-color-border/40 px-2 py-0.5 font-medium text-brand-primary">
             {post.category}
           </span>
         )}
@@ -111,7 +113,8 @@ function BlogThumbnail({ post }: BlogThumbnailProps) {
   }
 
   return (
-    <div className="relative h-56 w-full overflow-hidden rounded-xl bg-zinc-100 sm:h-64">
+    /* 背景色をボーダー色の透過に変更 */
+    <div className="relative h-56 w-full overflow-hidden rounded-xl bg-color-border/30 sm:h-64">
       <Image
         width={768}
         height={432}
@@ -133,7 +136,8 @@ function BlogBody({ body }: BlogBodyProps) {
   return (
     <section
       aria-label="Article content"
-      className="prose prose-zinc max-w-none dark:prose-invert prose-headings:font-semibold prose-p:text-zinc-700 dark:prose-p:text-zinc-300 prose-a:text-zinc-900 dark:prose-a:text-zinc-100 prose-a:underline prose-strong:text-zinc-900 dark:prose-strong:text-zinc-100"
+      /* prose 内の固定色指定を削除し、変数に紐づくように調整 */
+      className="prose prose-zinc max-w-none dark:prose-invert prose-headings:text-brand-primary prose-p:text-color-muted prose-a:text-brand-primary prose-a:underline prose-strong:text-brand-primary"
     >
       <div dangerouslySetInnerHTML={{ __html: body }} />
     </section>

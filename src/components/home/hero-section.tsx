@@ -2,14 +2,14 @@ export function HeroSection() {
   return (
     <section className="animate-in fade-in slide-in-from-bottom-5 duration-700 ease-out fill-mode-both space-y-4">
       <div className="space-y-2">
-        <h1 className="text-4xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-50 sm:text-5xl">
+        {/* text-foreground (ブランドカラーのプライマリ) を使用 */}
+        <h1 className="text-4xl font-semibold tracking-tight text-brand-primary sm:text-5xl">
           null-as-0x00
         </h1>
-        <p className="text-lg text-zinc-600 dark:text-zinc-400">
-          Web Developer & Engineer
-        </p>
+        {/* text-color-muted (控えめな色) を使用 */}
+        <p className="text-lg text-color-muted">Web Developer & Engineer</p>
       </div>
-      <div className="max-w-2xl space-y-4 text-base leading-7 text-zinc-600 dark:text-zinc-400">
+      <div className="max-w-2xl space-y-4 text-base leading-7 text-color-muted">
         <p>
           こんにちは、null-as-0x00 です。Web
           フロントエンドを中心に、モダンな技術スタックを用いた開発を行っています。

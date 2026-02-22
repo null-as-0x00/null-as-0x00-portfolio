@@ -9,8 +9,9 @@ type SectionHeaderProps = {
   as?: "h1" | "h2";
 };
 
+// dark: プレフィックスを消し、CSS変数に紐付いたクラスに変更
 const headingClasses =
-  "text-2xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-50";
+  "text-2xl font-semibold tracking-tight text-brand-primary";
 
 export function SectionHeader({
   title,
@@ -28,9 +29,8 @@ export function SectionHeader({
       <div>
         <Heading className={headingClasses}>{title}</Heading>
         {description && (
-          <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
-            {description}
-          </p>
+          // zinc-600 dark:text-zinc-400 を color-muted に統合
+          <p className="mt-1 text-sm text-color-muted">{description}</p>
         )}
       </div>
       {action && <div className="shrink-0">{action}</div>}
