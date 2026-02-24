@@ -183,7 +183,7 @@ function WorkBody({ body }: WorkBodyProps) {
       </h2>
       {/* prose-invert でダークモード時のタイポグラフィを自動調整 */}
       <div className="prose prose-zinc max-w-none text-sm dark:prose-invert text-color-muted">
-        <p>{body}</p>
+        <div dangerouslySetInnerHTML={{ __html: body }} />
       </div>
     </section>
   );
