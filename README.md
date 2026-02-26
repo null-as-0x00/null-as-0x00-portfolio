@@ -48,8 +48,8 @@
 src/
 ├── app/            # Next.js App Router (Routing, Pages, Layouts)
 ├── components/     # React Components
-│   ├── ui/        # Atom level components (shadcn/ui)
-│   └── shared/    # Domain specific or Common components
+│   ├── ui/         # Atom level components (shadcn/ui)
+│   └── shared/     # Domain specific or Common components
 ├── hooks/          # Custom React Hooks
 ├── lib/            # Utility functions (cn utility, constants, etc.)
 ├── public/         # Static assets (Images, Favicons, OGP Images)
