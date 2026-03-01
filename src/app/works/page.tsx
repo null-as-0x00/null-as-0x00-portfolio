@@ -11,11 +11,6 @@ import {
   ErrorMessage,
 } from "@/components/ui/index";
 
-export const metadata: Metadata = {
-  title: "Works",
-  description: "null-as-0x00がこれまでに制作したプロジェクトや作品の一覧です。",
-};
-
 type WorksListSectionProps = {
   works: Work[];
 };
@@ -97,7 +92,7 @@ export default async function WorksPage() {
         <SectionHeader
           as="h1"
           title="Works"
-          description="制作物・プロジェクトの一覧ページです。microCMS と連携した実データを表示します。"
+          description="null-as-0x00がこれまでに制作したポートフォリオの一覧です。"
         />
         {isError && (
           <ErrorMessage message="Works の取得中にエラーが発生しました。時間をおいて再度お試しください。" />

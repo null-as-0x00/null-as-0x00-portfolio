@@ -115,7 +115,7 @@ export function FeaturedWorksSection({
     >
       <SectionHeader
         title="Featured Works"
-        description="主要な制作物・プロジェクト"
+        description="主要なポートフォリオ"
         action={
           <Link
             href="/works"

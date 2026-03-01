@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
 
-import { getWorksList, getBlogList, type Work, type BlogPost } from "@/lib/microcms-client";
+import {
+  getWorksList,
+  getBlogList,
+  type Work,
+  type BlogPost,
+} from "@/lib/microcms-client";
 import {
   HeroSection,
   FeaturedWorksSection,
@@ -8,7 +13,7 @@ import {
 } from "@/components/home/index";
 
 export const metadata: Metadata = {
-  title: "null-as-0x00 portfolio",
+  title: "null-as-0x00's BLOG",
   description: "Portfolio site built with Next.js App Router",
 };
 

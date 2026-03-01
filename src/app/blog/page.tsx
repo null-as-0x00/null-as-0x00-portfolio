@@ -10,11 +10,6 @@ import {
   ErrorMessage,
 } from "@/components/ui/index";
 
-export const metadata: Metadata = {
-  title: "Blog",
-  description: "技術記事や学習メモ、日々の開発で得た知見を発信しています。",
-};
-
 type BlogListSectionProps = {
   posts: BlogPost[];
 };
@@ -98,7 +93,7 @@ export default async function BlogPage() {
         <SectionHeader
           as="h1"
           title="Blog"
-          description="技術記事や学習メモの一覧ページです。microCMS と連携した実データを表示します。"
+          description="技術記事や学習メモ、日々の開発で得た知見を発信しています。"
         />
         {isError && (
           <ErrorMessage message="Blog 記事の取得中にエラーが発生しました。時間をおいて再度お試しください。" />

@@ -10,7 +10,7 @@ export function Header() {
             href="/"
             className="text-sm font-semibold tracking-tight text-zinc-900 dark:text-zinc-50"
           >
-            null-as-0x00
+            null-as-0x00's BLOG
           </Link>
           <ThemeToggle />
         </div>
