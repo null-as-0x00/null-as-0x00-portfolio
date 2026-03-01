@@ -57,16 +57,15 @@ function WorkCard({ work, index }: { work: Work; index: number }) {
         className="flex flex-col gap-4 rounded-xl border border-border border-color-border bg-background p-4 transition-colors hover:border-color-border-hover sm:flex-row"
       >
         {work.thumbnail ? (
-          <div className="relative h-32 w-full overflow-hidden rounded-lg bg-color-border/50 sm:h-24 sm:w-40">
+          <div className="w-full overflow-hidden rounded-lg bg-color-border/50 sm:w-40">
             <Image
-              width={320}
-              height={180}
               src={work.thumbnail.url}
               alt={work.title}
-              fill
+              width={work.thumbnail.width}
+              height={work.thumbnail.height}
               sizes="(min-width: 640px) 160px, 100vw"
               priority={index < 2}
-              className="object-cover transition-transform group-hover:scale-105"
+              className="h-auto w-full object-contain transition-transform group-hover:scale-105"
             />
           </div>
         ) : (
@@ -116,7 +115,7 @@ export function FeaturedWorksSection({
     >
       <SectionHeader
         title="Featured Works"
-        description="主要な制作物・プロジェクト"
+        description="主要なポートフォリオ"
         action={
           <Link
             href="/works"

@@ -10,11 +10,6 @@ import {
   ErrorMessage,
 } from "@/components/ui/index";
 
-export const metadata: Metadata = {
-  title: "Blog",
-  description: "技術記事や学習メモ、日々の開発で得た知見を発信しています。",
-};
-
 type BlogListSectionProps = {
   posts: BlogPost[];
 };
@@ -31,25 +26,23 @@ function BlogListSection({ posts }: BlogListSectionProps) {
       {posts.map((post) => (
         <Card key={post.id} variant="hoverable" as="article">
           {post.thumbnail ? (
-            /* bg-zinc-100 を透過した border 色に変更 */
-            <div className="relative h-24 w-full overflow-hidden rounded-lg bg-color-border/50 sm:h-24 sm:w-40">
+            <div className="w-full overflow-hidden rounded-lg bg-color-border/50 sm:w-40">
               <Image
                 src={post.thumbnail.url}
                 alt={post.title}
-                fill
+                width={post.thumbnail.width}
+                height={post.thumbnail.height}
                 sizes="(min-width: 640px) 160px, 100vw"
-                className="object-cover"
+                className="h-auto w-full object-contain transition-transform group-hover:scale-105"
               />
             </div>
           ) : (
-            /* グラデーションの zinc 指定を CSS変数(color-border)ベースに変更 */
             <div className="flex h-24 w-full items-center justify-center rounded-lg bg-gradient-to-br from-color-border/30 to-color-border/60 text-xs text-color-muted sm:w-40">
               No thumbnail
             </div>
           )}
 
           <div className="flex-1">
-            {/* テキストカラーを brand-primary に設定 */}
             <h2 className="text-base font-semibold tracking-tight text-brand-primary">
               <Link
                 href={`/blog/${post.slug}`}
@@ -59,7 +52,6 @@ function BlogListSection({ posts }: BlogListSectionProps) {
               </Link>
             </h2>
             {post.excerpt && (
-              /* text-zinc-600/400 を color-muted に統一 */
               <p className="mt-1 text-sm text-color-muted">{post.excerpt}</p>
             )}
             <div className="mt-2 flex flex-wrap items-center gap-3 text-xs text-color-muted">
@@ -101,7 +93,7 @@ export default async function BlogPage() {
         <SectionHeader
           as="h1"
           title="Blog"
-          description="技術記事や学習メモの一覧ページです。microCMS と連携した実データを表示します。"
+          description="技術記事や学習メモ、日々の開発で得た知見を発信しています。"
         />
         {isError && (
           <ErrorMessage message="Blog 記事の取得中にエラーが発生しました。時間をおいて再度お試しください。" />

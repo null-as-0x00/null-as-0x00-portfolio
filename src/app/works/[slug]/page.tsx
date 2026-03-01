@@ -199,15 +199,15 @@ function WorkThumbnail({ work }: WorkThumbnailProps) {
   }
 
   return (
-    <div className="relative h-56 w-full overflow-hidden rounded-xl bg-color-border/30 sm:h-64">
+    <div className="w-full overflow-hidden rounded-xl bg-color-border/30">
       <Image
-        width={768}
-        height={432}
         src={work.thumbnail.url}
         alt={work.title}
-        fill
+        width={work.thumbnail.width}
+        height={work.thumbnail.height}
         sizes="(min-width: 768px) 768px, 100vw"
-        className="object-cover"
+        className="h-auto w-full object-contain" // 高さを自動(auto)にし、横幅を親に合わせる
+        priority
       />
     </div>
   );
