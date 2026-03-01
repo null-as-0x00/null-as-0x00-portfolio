@@ -32,25 +32,23 @@ function WorksListSection({ works }: WorksListSectionProps) {
       {works.map((work) => (
         <Card key={work.id} variant="hoverable" as="article">
           {work.thumbnail ? (
-            // bg-zinc-100 を color-border の透過色などに変更
-            <div className="relative h-32 w-full overflow-hidden rounded-lg bg-color-border/50 sm:h-24 sm:w-40">
+            <div className="w-full overflow-hidden rounded-lg bg-color-border/50 sm:w-40">
               <Image
                 src={work.thumbnail.url}
                 alt={work.title}
-                fill
+                width={work.thumbnail.width}
+                height={work.thumbnail.height}
                 sizes="(min-width: 640px) 160px, 100vw"
-                className="object-cover"
+                className="h-auto w-full object-contain transition-transform group-hover:scale-105"
               />
             </div>
           ) : (
-            // グラデーションの zinc 指定を CSS変数(color-border)ベースに変更
             <div className="flex h-32 w-full items-center justify-center rounded-lg bg-gradient-to-br from-color-border/30 to-color-border/60 text-xs text-color-muted sm:h-24 sm:w-40">
               No thumbnail
             </div>
           )}
 
           <div className="flex-1">
-            {/* テキストカラーを brand-primary に設定 */}
             <h2 className="text-base font-semibold tracking-tight text-brand-primary">
               <Link
                 href={`/works/${work.slug}`}
@@ -60,7 +58,6 @@ function WorksListSection({ works }: WorksListSectionProps) {
               </Link>
             </h2>
             {work.summary && (
-              // zinc-600 dark:zinc-400 を color-muted に統一
               <p className="mt-1 text-sm text-color-muted">{work.summary}</p>
             )}
             {work.techStack && work.techStack.length > 0 && (

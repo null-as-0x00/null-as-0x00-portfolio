@@ -113,16 +113,15 @@ function BlogThumbnail({ post }: BlogThumbnailProps) {
   }
 
   return (
-    /* 背景色をボーダー色の透過に変更 */
-    <div className="relative h-56 w-full overflow-hidden rounded-xl bg-color-border/30 sm:h-64">
+    <div className="w-full overflow-hidden rounded-xl bg-color-border/30">
       <Image
-        width={768}
-        height={432}
         src={post.thumbnail.url}
         alt={post.title}
-        fill
+        width={post.thumbnail.width}
+        height={post.thumbnail.height}
         sizes="(min-width: 768px) 768px, 100vw"
-        className="object-cover"
+        className="h-auto w-full object-contain" // 高さを自動(auto)にし、横幅を親に合わせる
+        priority
       />
     </div>
   );
