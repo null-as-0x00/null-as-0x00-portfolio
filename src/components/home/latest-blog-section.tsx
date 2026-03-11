@@ -69,28 +69,25 @@ function BlogCard({ post }: { post: BlogPost }) {
         )}
 
         <div className="flex-1">
-          <h3 className="text-base font-semibold tracking-tight text-brand-primary">
-            <Link
-              href={`/blog/${post.slug}`}
-              className="hover:underline focus-ring rounded"
-            >
+          <Link href={`/blog/${post.slug}`}>
+            <h3 className="hover:underline text-base font-semibold tracking-tight text-brand-primary">
               {post.title}
-            </Link>
-          </h3>
-          {post.excerpt && (
-            <p className="mt-1 text-sm text-color-muted">{post.excerpt}</p>
-          )}
-          <div className="mt-2 flex flex-wrap items-center gap-3 text-xs text-color-muted">
-            {post.category && <span>{post.category}</span>}
-            {post.publishedAt && (
-              <span>
-                Published{" "}
-                <time dateTime={post.publishedAt}>
-                  {new Date(post.publishedAt).toLocaleDateString("ja-JP")}
-                </time>
-              </span>
+            </h3>
+            {post.excerpt && (
+              <p className="mt-1 text-sm text-color-muted">{post.excerpt}</p>
             )}
-          </div>
+            <div className="mt-2 flex flex-wrap items-center gap-3 text-xs text-color-muted">
+              {post.category && <span>{post.category}</span>}
+              {post.publishedAt && (
+                <span>
+                  Published{" "}
+                  <time dateTime={post.publishedAt}>
+                    {new Date(post.publishedAt).toLocaleDateString("ja-JP")}
+                  </time>
+                </span>
+              )}
+            </div>
+          </Link>
         </div>
       </m.div>
     </m.article>

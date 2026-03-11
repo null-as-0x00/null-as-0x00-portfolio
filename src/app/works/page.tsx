@@ -44,26 +44,23 @@ function WorksListSection({ works }: WorksListSectionProps) {
           )}
 
           <div className="flex-1">
-            <h2 className="text-base font-semibold tracking-tight text-brand-primary">
-              <Link
-                href={`/works/${work.slug}`}
-                className="hover:underline focus-ring rounded"
-              >
+            <Link href={`/works/${work.slug}`}>
+              <h2 className="hover:underline text-base font-semibold tracking-tight text-brand-primary">
                 {work.title}
-              </Link>
-            </h2>
-            {work.summary && (
-              <p className="mt-1 text-sm text-color-muted">{work.summary}</p>
-            )}
-            {work.techStack && work.techStack.length > 0 && (
-              <ul className="mt-2 flex flex-wrap gap-1.5" role="list">
-                {work.techStack.map((tech) => (
-                  <li key={tech}>
-                    <Tag>{tech}</Tag>
-                  </li>
-                ))}
-              </ul>
-            )}
+              </h2>
+              {work.summary && (
+                <p className="mt-1 text-sm text-color-muted">{work.summary}</p>
+              )}
+              {work.techStack && work.techStack.length > 0 && (
+                <ul className="mt-2 flex flex-wrap gap-1.5" role="list">
+                  {work.techStack.map((tech) => (
+                    <li key={tech}>
+                      <Tag>{tech}</Tag>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </Link>
           </div>
         </Card>
       ))}
